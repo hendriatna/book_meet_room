@@ -20,21 +20,25 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
 # Application
 INSTALLED_APPS = [
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
 
+    # Third party
     "rest_framework",
     "rest_framework_simplejwt",
     "drf_spectacular",
 
-    "apps.accounts.apps.AccountsConfig",
-    "apps.rooms.apps.RoomsConfig",
-    "apps.bookings.apps.BookingsConfig",
-    "apps.common.apps.CommonConfig",
+    # Local apps
+    "apps.common",
+    "apps.accounts",
+    "apps.rooms",
+    "apps.bookings",
 ]
 
 MIDDLEWARE = [
@@ -46,6 +50,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+AUTH_USER_MODEL = "accounts.User"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ROOT_URLCONF = "config.urls"
 
@@ -69,7 +77,7 @@ ASGI_APPLICATION = "config.asgi.application"
 
 # Internationalization
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Asia/Jakarta"
+TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
