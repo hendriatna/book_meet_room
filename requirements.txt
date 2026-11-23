@@ -1,0 +1,7 @@
+Django>=6.0,<6.1
+djangorestframework
+djangorestframework-simplejwt
+psycopg[binary]
+django-environ
+drf-spectacular
+gunicorn

@@ -1,0 +1,21 @@
+from .base import *
+
+DEBUG = False
+
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+
+DATABASES = {
+    "default": env.db("DATABASE_URL")
+}
+
+# HTTPS security
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
