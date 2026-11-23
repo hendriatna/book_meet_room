@@ -1,6 +1,7 @@
 
 import os
 from pathlib import Path
+from datetime import timedelta
 
 import environ
 
@@ -32,8 +33,9 @@ INSTALLED_APPS = [
     # Third party
     "rest_framework",
     "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
-
+    
     # Local apps
     "apps.common",
     "apps.accounts",
@@ -95,7 +97,14 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 # API Documentation
